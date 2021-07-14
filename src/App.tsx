@@ -1,25 +1,19 @@
 import './App.css';
 import { Wrapper } from './components/Wrapper';
-import { Navbar } from './components/Navbar';
-import { HookRouter, useRoutes } from 'hookrouter';
-import { NotFound } from './pages/NotFound';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Contact } from './pages/Contact';
-
-const routes = {
-  '/': () => <Home />,
-  '/about*': () => <About />,
-  '/contact/:name': ({ name }: HookRouter.QueryParams) => <Contact name={name} />,
-}
+import { RouteContext, RouteProvider } from './contexts/routeContext';
+import { Stage } from './pages/Stage';
 
 function App() {
-  const match = useRoutes(routes);
   return (
-    <Wrapper title="foo">
-      <Navbar />
-      {match || <NotFound />}
-    </Wrapper>
+    <RouteProvider>
+      <Wrapper title="foo">
+        <RouteContext.Consumer>
+          {({ state }) => (
+            <Stage id={state.currentStage} />
+          )}
+        </RouteContext.Consumer>
+      </Wrapper>
+    </RouteProvider>
   );
 }
 
