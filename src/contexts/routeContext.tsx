@@ -1,4 +1,5 @@
-import { createContext, Dispatch, PropsWithChildren, useReducer } from "react";
+import { useLocationChange } from "raviger";
+import { createContext, Dispatch, PropsWithChildren, useCallback, useReducer } from "react";
 
 interface Stage {
   name: string,
@@ -59,6 +60,12 @@ export const RouteContext = createContext({
 
 export const RouteProvider = ({ children }: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(routeReducer, initialState);
+  const pageChanged = useCallback((path) => {
+    const id = path.split('/stage/')[1];
+    if (id) dispatch({ type: 'UPDATE_CURRENT_STAGE', payload: id})
+  }, [dispatch]);
+
+  useLocationChange(pageChanged);
 
   return (
     <RouteContext.Provider value={{ state, dispatch }}>

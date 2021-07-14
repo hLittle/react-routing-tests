@@ -1,17 +1,19 @@
+import { useRoutes } from 'raviger';
 import './App.css';
 import { Wrapper } from './components/Wrapper';
-import { RouteContext, RouteProvider } from './contexts/routeContext';
+import { RouteProvider } from './contexts/routeContext';
 import { Stage } from './pages/Stage';
 
+const routes = {
+  '/': () => <Stage />,
+  '/stage/:id': ({ id }: { [k: string]: any }) => <Stage id={id} />,
+}
 function App() {
+  const match = useRoutes(routes);
   return (
     <RouteProvider>
       <Wrapper title="foo">
-        <RouteContext.Consumer>
-          {({ state }) => (
-            <Stage id={state.currentStage} />
-          )}
-        </RouteContext.Consumer>
+        {match}
       </Wrapper>
     </RouteProvider>
   );
