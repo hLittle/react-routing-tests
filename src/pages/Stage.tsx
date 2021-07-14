@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Page } from "../components/Page";
 import { RouteContext, stageSelector } from "../contexts/routeContext";
 
-export const Stage = ({ id }: { id: string }) => {
+export const Stage = ({ id }: { id?: string }) => {
   const { state, dispatch } = useContext(RouteContext);
   const stage = stageSelector(state, id);
   const handleClick = () => {
