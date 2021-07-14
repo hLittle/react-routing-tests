@@ -46,8 +46,9 @@ const routeReducer = (state: any, action: Actions) => {
   }
 }
 
-export const stageSelector = (state: RouteState, id: string): Stage | undefined => {
+export const stageSelector = (state: RouteState, id?: string): Stage | undefined => {
   let { stages }  = state;
+  if (!id) return stages[0];
   return stages.find((stage) => stage.id === id);
 }
 
