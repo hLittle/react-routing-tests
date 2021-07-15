@@ -1,17 +1,17 @@
+import { Route, Router } from 'wouter';
 import './App.css';
 import { Wrapper } from './components/Wrapper';
-import { RouteContext, RouteProvider } from './contexts/routeContext';
+import { RouteProvider } from './contexts/routeContext';
 import { Stage } from './pages/Stage';
 
 function App() {
   return (
     <RouteProvider>
       <Wrapper title="foo">
-        <RouteContext.Consumer>
-          {({ state }) => (
-            <Stage id={state.currentStage} />
-          )}
-        </RouteContext.Consumer>
+        <Router>
+          <Route path="/stage/:id">{(params) => <Stage id={params.id} />}</Route>
+          <Route><Stage /></Route>
+        </Router>
       </Wrapper>
     </RouteProvider>
   );
