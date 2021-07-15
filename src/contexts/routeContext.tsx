@@ -1,4 +1,5 @@
-import { createContext, Dispatch, PropsWithChildren, useReducer } from "react";
+import { createContext, Dispatch, PropsWithChildren, useEffect, useReducer } from "react";
+import { useLocation } from "wouter";
 
 interface Stage {
   name: string,
@@ -59,6 +60,11 @@ export const RouteContext = createContext({
 
 export const RouteProvider = ({ children }: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(routeReducer, initialState);
+  const [location] = useLocation();
+
+  useEffect(() => {
+    dispatch({ type: 'UPDATE_CURRENT_STAGE', payload: location})
+  }, [location])
 
   return (
     <RouteContext.Provider value={{ state, dispatch }}>
