@@ -29,7 +29,7 @@ const useHashLocation: BaseLocationHook = () => {
 };
 
 function App() {
-  let config = 'hash';
+  let config = 'path';
   let hook: BaseLocationHook | undefined;
   switch (config) {
     case 'hash':
