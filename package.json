@@ -20,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cleanup-hookrouter-types": "rm -f node_modules/hookrouter/dist/index.d.ts* # See https://github.com/Paratron/hookrouter/issues/147",
+    "postinstall": "npm run cleanup-hookrouter-types"
   },
   "eslintConfig": {
     "extends": [
