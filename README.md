@@ -1,3 +1,21 @@
+# Routing Tests
+
+This repo contains tests of a few React routing libraries, especially looking for:
+- Small bundle size
+- Being able to change the routing type (html5, hash, static), dynamically
+- Supports dynamic url configuration
+
+The main branch has no router, and just uses a React Context to manage the view state.
+
+Each library tested is setup in it's own branch.
+
+Libraries tested:
+- [react-router v5.x](https://reactrouter.com/web/guides/quick-start)
+- [react-router v6.0.0-beta.0](https://github.com/remix-run/react-router/blob/dev/docs/advanced-guides/migrating-5-to-6.md)
+- [hookrouter](https://github.com/Paratron/hookrouter)
+- [raviger](https://kyeotic.github.io/raviger/)
+- [wouter](https://github.com/molefrog/wouter)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
